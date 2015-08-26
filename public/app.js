@@ -8,9 +8,21 @@ angularApp.controller('FlashCardController', function ($scope) {
     $scope.answeredCorrectly = answer.correct;
   };
 
+
+
 });
 
 angularApp.controller('MainController', function ($scope) {
+  $scope.currentCard = 0;
+  $scope.score = 0;
+  $scope.goToNext = function (answeredCorrectly) {
+    if (answeredCorrectly) $scope.score++;
+    $scope.currentCard++;
+    if ($scope.currentCard === $scope.flashCards.length) {
+      console.log('hi tehre');
+      $scope.showScore = true;
+    }
+  };
     $scope.flashCards = [
         {
             question: 'What is Angular?',
